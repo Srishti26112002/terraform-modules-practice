@@ -1,5 +1,5 @@
 region                 = "ap-south-1"
-aws_profile            = "srishti-prsnl-prac"
+aws_profile            = "srishti-self"
 vpc_base_cidr          = "10.1.0.0/16"
 vpc_name               = "terraform-vpc-1"
 enable_dns_hostnames   = true
