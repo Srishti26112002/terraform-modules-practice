@@ -1,10 +1,10 @@
 terraform {
   backend "s3" {
-    bucket         = "terraform-backend-state-stage"
-    key            = "stage/vpc/terraform.tfstate"
+    bucket         = "terraform-backend-state"
+    key            = "vpc/terraform.tfstate"
     region         = "ap-south-1"
     dynamodb_table = "terraform-lock-table"
-    profile        = "srishti-prsnl-prac"
+    profile        = "srishti-self"
   }
 
   required_providers {
