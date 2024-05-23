@@ -1,7 +1,7 @@
 data "aws_region" "current" {}
 
 data "aws_key_pair" "ssh_key_pair" {
-  key_name = "srishti-keypair"
+  key_name = "srishti"
   filter {
     name   = "tag:environment"
     values = [local.environment]
