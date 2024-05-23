@@ -4,7 +4,7 @@ terraform {
     key            = "stage/eks/terraform.tfstate"
     region         = "ap-south-1"
     dynamodb_table = "terraform-lock-table"
-    profile        = "srishti-prsnl-prac"
+    profile        = "srishti-self"
   }
 
   required_providers {
