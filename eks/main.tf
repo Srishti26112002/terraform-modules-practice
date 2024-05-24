@@ -6,6 +6,8 @@ module "eks" {
   cluster_version = "1.28"
 
   cluster_endpoint_public_access = true
+  cluster_endpoint_private_access  = true
+
 
   cluster_addons = {
     coredns = {
@@ -20,7 +22,6 @@ module "eks" {
   }
 
   vpc_id = data.aws_vpc.vpc.id
-  # subnet_ids = data.aws_subnets.subnets.ids
   subnet_ids = data.aws_subnets.private_subnets.ids
 
 
