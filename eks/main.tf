@@ -62,6 +62,63 @@ module "eks" {
 
 
 
+resource "aws_launch_template" "eks-node-group-lt" {
+  name = "eks-ng-${var.custom_string}-${local.environment}"
+
+  vpc_security_group_ids = [ 
+    aws_security_group.eks_ssh.id,
+    module.eks.cluster_primary_security_group_id
+  ]
+  
+  monitoring {
+    enabled = true
+  }
+
+  user_data = base64encode(templatefile("${path.module}/common/templates/userdata.sh.tpl", {}))
+
+  # tags apply to EC2 instances
+  tag_specifications {
+    resource_type = "instance"
+    tags = merge(
+      {
+        Name = "eks-ng-${var.custom_string}-${local.environment}"
+      },
+      local.tags
+    )
+  }
+
+  tag_specifications {
+    resource_type = "volume"
+    tags = merge(
+      {
+        Name = "eks-ng-${var.custom_string}-${local.environment}"
+      },
+      local.tags
+    )
+  }
+
+  tag_specifications {
+    resource_type = "spot-instances-request"
+    tags = merge(
+      {
+        Name = "eks-ng-${var.custom_string}-${local.environment}"
+      },
+      local.tags
+    )
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "eks-ng-${var.custom_string}-${local.environment}"
+  }
+
+}
+
+
+
 
 
 resource "aws_security_group" "eks_ssh" {
