@@ -19,7 +19,7 @@ variable "azs" {
 variable "key_name" {
   description = "The SSH key name"
   type        = string
-  default     = "srishti-keypair"
+  default     = "srishti"
 }
 
 
@@ -51,7 +51,11 @@ variable "cluster_name" {
   type    = string
   default = "stage-cluster"
 }
-
+variable "custom_string" {
+  type        = string
+  default     = "aws"
+  description = "random string for naming"
+}
 
 
 
@@ -73,4 +77,6 @@ variable "desired_size" {
   description = "desired number of nodes that the group should launch with initially"
   default     = 1
 }
+
+
 
